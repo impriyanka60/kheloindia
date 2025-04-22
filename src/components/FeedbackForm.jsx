@@ -34,45 +34,39 @@ export default function FeedbackForm() {
   };
 
   return (
-    <div className="min-h-screen bg-orange-700 flex items-center justify-center px-4">
-      {/* Form Card */}
-      <div className="bg-white shadow-xl rounded-2xl max-w-3xl mx-auto mt-10 p-8 border border-gray-200 w-[95%]">
-        
-        {/* Logos section */}
+    <div className="min-h-screen bg-orange-700 flex items-center justify-center px-4 py-8">
+      <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl p-6 sm:p-8 border border-gray-200">
+        {/* Logos */}
         <div className="flex justify-between items-center mb-6">
           <img src={nu} alt="Left Logo" className="h-10 w-auto" />
           <img src={logo} alt="Right Logo" className="h-10 w-auto" />
         </div>
 
-        {/* Heading below logos */}
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-6">
+        {/* Heading */}
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-2">
           Feedback / Grievance Form By Nalanda Administration
         </h1>
-
-        <p className="text-base text-gray-600 mb-6 text-center">
+        <p className="text-sm sm:text-base text-gray-600 mb-6 text-center">
           Kindly fill out the form so that we can help you resolve the issue
         </p>
 
-        {/* Feedback Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
           <div>
-            <label className="block text-md font-semibold mb-1">
-              📛 Name
-            </label>
+            <label className="block text-sm font-semibold mb-1">📛 Name</label>
             <input
               type="text"
               name="name"
               value={formData.anonymous ? "" : formData.name}
               onChange={handleChange}
               disabled={formData.anonymous}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
               placeholder="Enter your name"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm sm:text-base bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
           </div>
 
-          {/* Anonymous Checkbox */}
-          <div className="flex items-center space-x-3">
+          {/* Anonymous */}
+          <div className="flex items-center space-x-2">
             <input
               type="checkbox"
               name="anonymous"
@@ -87,14 +81,18 @@ export default function FeedbackForm() {
 
           {/* Category */}
           <div>
-            <label className="block text-md font-semibold mb-1">
-              📁 Category
-            </label>
+            <label className="block text-sm font-semibold mb-1">📁 Category</label>
             <select
               name="category"
               value={formData.category}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  category: e.target.value,
+                  subCategory: "",
+                }))
+              }
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-400"
             >
               <option value="">Select a category</option>
               {Object.keys(categoryOptions).map((cat) => (
@@ -105,44 +103,54 @@ export default function FeedbackForm() {
             </select>
           </div>
 
-          {/* Sub-Category */}
+          {/* Subcategory Dropdown & Display */}
           {formData.category && (
-            <div>
-              <label className="block text-md font-semibold mb-1">
-                📂 Sub-Category
-              </label>
-              <select
-                name="subCategory"
-                value={formData.subCategory}
-                onChange={handleChange}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
-              >
-                <option value="">Select a sub-category</option>
-                {categoryOptions[formData.category].map((sub) => (
-                  <option key={sub} value={sub}>
-                    {sub}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
+  <div className="flex items-center space-x-3">
+   <select
+  name="subCategory"
+  value=""
+  onChange={(e) =>
+    setFormData((prev) => ({
+      ...prev,
+      subCategory: e.target.value,
+    }))
+  }
+  className="w-24 h-9 border border-gray-300 rounded-md px-2 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
+>
+
+      <option value="" disabled hidden>Select</option>
+      {categoryOptions[formData.category].map((sub) => (
+        <option key={sub} value={sub}>
+          {sub}
+        </option>
+      ))}
+    </select>
+
+    <input
+      type="text"
+      readOnly
+      value={formData.subCategory}
+      placeholder="Selected issue"
+      className="flex-1 border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-md focus:outline-none"
+      style={{ minWidth: "0" }}
+    />
+  </div>
+)}
 
           {/* Description */}
           <div>
-            <label className="block text-md font-semibold mb-1">
-              📝 Description
-            </label>
+            <label className="block text-sm font-semibold mb-1">📝 Description</label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
               rows={4}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-orange-400"
               placeholder="Describe your issue or feedback in detail"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm bg-gray-50 resize-none focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
           </div>
 
-          {/* Submit Button */}
+          {/* Submit */}
           <button
             type="submit"
             className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200"
@@ -153,4 +161,4 @@ export default function FeedbackForm() {
       </div>
     </div>
   );
-}// is it mobile responsive 
+}
