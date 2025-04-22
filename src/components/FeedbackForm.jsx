@@ -43,7 +43,7 @@ export default function FeedbackForm() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-2">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-2">
           Feedback / Grievance Form By Nalanda Administration
         </h1>
         <p className="text-sm sm:text-base text-gray-600 text-center mb-8">
