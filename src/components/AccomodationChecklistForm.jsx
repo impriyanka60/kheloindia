@@ -13,6 +13,16 @@ export default function AccommodationChecklistForm() {
     ],
     corridor: [
       "ट्यूबलाइट / बल्ब", "डस्टबिन", "स्वच्छता", "पोस्टर या संकेत", "सीसीटीवी"
+    ],
+    entranceExit: [
+      "गेट नेट", "सीसीटीवी", "ट्यूबलाइट / बल्ब"
+    ],
+    kitchenArea: [
+      "भरा डस्टबिन", "वेंटिलेशन ठीक न हो", "ट्यूबलाइट / बल्ब", "एग्जॉस्ट फैन"
+    ],
+    diningArea: [
+      "टेबल की संख्या", "ठीक टेबल", "कुर्सियों की संख्या", "ठीक कुर्सियाँ",
+      "पंखा", "ट्यूबलाइट / बल्ब", "हैंड वॉश बेसिन", "हैंड वॉश बेसिन की संख्या"
     ]
   };
 
@@ -66,6 +76,9 @@ export default function AccommodationChecklistForm() {
         {renderChecklistGroup("1. कमरे की जांच एवं स्थिति", items.roomInspection, "roomInspection")}
         {renderChecklistGroup("2. साफ़-सफाई एवं स्वच्छता", items.cleanliness, "cleanliness")}
         {renderChecklistGroup("3. कॉरिडोर", items.corridor, "corridor")}
+        {renderChecklistGroup("4. प्रवेश/निकास द्वार", items.entranceExit, "entranceExit")}
+        {renderChecklistGroup("5. किचन एरिया", items.kitchenArea, "kitchenArea")}
+        {renderChecklistGroup("6. डाइनिंग एरिया", items.diningArea, "diningArea")}
 
         <div className="text-center">
           <button
