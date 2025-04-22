@@ -34,26 +34,28 @@ export default function FeedbackForm() {
   };
 
   return (
-    <div className="min-h-screen bg-orange-700 flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-orange-700 flex items-center justify-center px-4 py-10">
       <div className="bg-white shadow-xl rounded-2xl w-full max-w-3xl p-6 sm:p-8 border border-gray-200">
         {/* Logos */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-8">
           <img src={nu} alt="Left Logo" className="h-10 w-auto" />
           <img src={logo} alt="Right Logo" className="h-10 w-auto" />
         </div>
 
         {/* Heading */}
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-800 text-center mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-2">
           Feedback / Grievance Form By Nalanda Administration
         </h1>
-        <p className="text-sm sm:text-base text-gray-600 mb-6 text-center">
+        <p className="text-sm sm:text-base text-gray-600 text-center mb-8">
           Kindly fill out the form so that we can help you resolve the issue
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold mb-1">📛 Name</label>
+            <label className="block text-base font-semibold text-gray-700 mb-2">
+              📛 Name
+            </label>
             <input
               type="text"
               name="name"
@@ -81,7 +83,9 @@ export default function FeedbackForm() {
 
           {/* Category */}
           <div>
-            <label className="block text-sm font-semibold mb-1">📁 Category</label>
+            <label className="block text-base font-semibold text-gray-700 mb-2">
+              📁 Category
+            </label>
             <select
               name="category"
               value={formData.category}
@@ -103,43 +107,48 @@ export default function FeedbackForm() {
             </select>
           </div>
 
-          {/* Subcategory Dropdown & Display */}
+          {/* Subcategory (no label) */}
           {formData.category && (
-  <div className="flex items-center space-x-3">
-   <select
-  name="subCategory"
-  value=""
-  onChange={(e) =>
-    setFormData((prev) => ({
-      ...prev,
-      subCategory: e.target.value,
-    }))
-  }
-  className="w-24 h-9 border border-gray-300 rounded-md px-2 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
->
+            <div>
+              <div className="flex items-center space-x-3">
+                <select
+                  name="subCategory"
+                  value=""
+                  onChange={(e) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      subCategory: e.target.value,
+                    }))
+                  }
+                  className="w-28 sm:w-32 h-9 border border-gray-300 rounded-md px-2 text-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                >
+                  <option value="" disabled hidden>
+                    Select
+                  </option>
+                  {categoryOptions[formData.category].map((sub) => (
+                    <option key={sub} value={sub}>
+                      {sub}
+                    </option>
+                  ))}
+                </select>
 
-      <option value="" disabled hidden>Select</option>
-      {categoryOptions[formData.category].map((sub) => (
-        <option key={sub} value={sub}>
-          {sub}
-        </option>
-      ))}
-    </select>
-
-    <input
-      type="text"
-      readOnly
-      value={formData.subCategory}
-      placeholder="Selected issue"
-      className="flex-1 border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-md focus:outline-none"
-      style={{ minWidth: "0" }}
-    />
-  </div>
-)}
+                <input
+                  type="text"
+                  readOnly
+                  value={formData.subCategory}
+                  placeholder="Selected issue"
+                  className="flex-1 border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-sm sm:text-base focus:outline-none"
+                  style={{ minWidth: "0" }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold mb-1">📝 Description</label>
+            <label className="block text-base font-semibold text-gray-700 mb-2">
+              📝 Description
+            </label>
             <textarea
               name="description"
               value={formData.description}
@@ -153,7 +162,7 @@ export default function FeedbackForm() {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-200"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-200 text-base"
           >
             🚀 Submit Feedback
           </button>
